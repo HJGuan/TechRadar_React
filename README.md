@@ -1,1 +1,0 @@
-# Tech radar with React
