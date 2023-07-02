@@ -1,0 +1,128 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+/* .Radar{
+  
+} */
+
+.Panel{
+  margin-top: 80px;
+  margin-right: 100px;
+  margin-left: 80px;
+  width: 500px;
+  height: 800px;
+  min-width:400px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.Form{
+  width: 400px;
+  min-width:400px;
+  margin-top: 10px;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:25px;
+  padding-left:25px;    
+  border-radius:15px;
+  background-color:#f1f2f3;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* width: fit-content; */
+  height: auto;
+}
+
+.Form2{
+  width: 400px;
+  min-width:400px;
+  margin-top: 20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:25px;
+  padding-left:25px;    
+  border-radius:15px;
+  background-color:#f3f3e9;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* width: fit-content; */
+  height: auto;
+}
+
+.Form3{
+  width: 400px;
+  min-width:400px;
+  margin-top: 20px;
+  border-radius:15px;
+  background-color:#f9f9f6;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* width: fit-content; */
+  height: auto;
+}
+
+
+.Form-title{
+  align-items: center;
+}
+
+.Panel-title{
+  align-items: center;
+}
+
+.Form-body{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+Button{
+  margin-left:15px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.info-table {
+  width: 1450px;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
