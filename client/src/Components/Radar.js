@@ -564,8 +564,8 @@ export default function Radar (props) {
             .filter(function() {
               const rect = this.getBoundingClientRect()
               //the coordinates of the blips are a bit shifted, this -30 +10 are to adjusted it back.
-              const elementX = rect.x - 30; 
-              const elementY = rect.y + 10;     
+              const elementX = rect.x; 
+              const elementY = rect.y;     
               return (
                 elementX >= Math.min(startX, currentX) &&
                 elementX <= Math.max(startX, currentX) &&
