@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import apiUrl from '../config';
 import '../App.css';
 import { Button, Form, Input, Radio , Select} from 'antd';
 const { Option } = Select;
@@ -13,7 +13,7 @@ function AdminPanel({onAdminTrigger}) {
 
 
   function onAdd(){ 
-    fetch('http://localhost:3003/techradar/v1/spots', { 
+    fetch(`${apiUrl}/spots`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function AdminPanel({onAdminTrigger}) {
 
   async function onClearAll() {
     try {
-      await fetch('http://localhost:3003/techradar/v1/spots', {
+      await fetch(`${apiUrl}/spots`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function AdminPanel({onAdminTrigger}) {
 
   async function onInit() {
     try {
-      await fetch('http://localhost:3003/techradar/v1', {
+      await fetch(`${apiUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

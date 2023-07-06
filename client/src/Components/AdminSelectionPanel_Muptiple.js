@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import apiUrl from '../config';
 import '../App.css';
 import { Button, Form, Input, Radio , Select} from 'antd';
 import { Table } from 'antd';
@@ -109,7 +109,7 @@ function AdminSelectionPanel_Muptiple({spots,onSelectSpot,onAdminTrigger}) {
   async function handleBatchDelete(){
     console.log("selectedRowKeys");
     try {
-      await fetch('http://localhost:3003/techradar/v1/spots', {
+      await fetch(`${apiUrl}/spots`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

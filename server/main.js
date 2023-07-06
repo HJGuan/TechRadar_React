@@ -1,25 +1,35 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
-const mysql = require('mysql')
 const techs = require('./Data/techs');
 const app = express();
-const port = 3003;
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const cors = require('cors');
 
 
 // Enable CORS
 app.use(cors());
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
 // Enable bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-mongoose.connect("mongodb://localhost:27017/techsCollection", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+
 
 const techsSchema = {
   quadrant: Number, 
@@ -150,7 +160,8 @@ app.delete('/techradar/v1/spots', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 

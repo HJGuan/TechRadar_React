@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import apiUrl from '../config';
 import '../App.css';
 import { Button, Form, Input, Radio , Select} from 'antd';
 const { Option } = Select;
@@ -29,7 +29,7 @@ function AdminSelectionPanel({spots, onAdminTrigger, handleCancel}) {
 
   async function onUpdate() {
     try {
-      await fetch(`http://localhost:3003/techradar/v1/spots/${techId}`, {
+      await fetch(`${apiUrl}/spots/${techId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function AdminSelectionPanel({spots, onAdminTrigger, handleCancel}) {
 
   async function onDelete() {
     try {
-      await fetch(`http://localhost:3003/techradar/v1/spots/${techId}`, {
+      await fetch(`${apiUrl}/spots/${techId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

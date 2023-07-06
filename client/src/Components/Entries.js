@@ -1,17 +1,21 @@
-import React from "react"
+import apiUrl from "../config";
 
-async function Entries (){
+async function Entries() {
     try {
-        const response = await fetch('http://localhost:3003/techradar/v1/spots', { method: 'GET' });
+        console.log(apiUrl);
+        console.log(`${apiUrl}/spots`)
+        //http://localhost:3001/techradar/v1/spots
+        const response = await fetch(`${apiUrl}/spots`, {  method: 'GET' });
+        
         if (!response.ok) {
             throw new Error('Request failed');
         }
         const data = await response.json();
+        console.log(data);
         return data;
     } catch (error) {
         console.error(error);
     }
-
-};
+}
 
 export default Entries;

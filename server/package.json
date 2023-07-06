@@ -4,7 +4,8 @@
   "description": "This is the server side of the tech radar.",
   "main": "main.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node main.js"
   },
   "author": "Hongjie Guan",
   "license": "MIT",
