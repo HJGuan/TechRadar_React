@@ -4,7 +4,6 @@ import '../App.css';
 import { Button, Form, Input, Radio , Select} from 'antd';
 const { Option } = Select;
 
-
 function AdminPanel({onAdminTrigger}) {
   const [form] = Form.useForm();
   const [techName, setTechName] = useState('');
@@ -12,18 +11,29 @@ function AdminPanel({onAdminTrigger}) {
   const [rings, setRings] = useState('');
 
 
-  function onAdd(){ 
-    fetch(`${apiUrl}/spots`, { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({"label":techName,"quadrant":quadrants,"ring":rings})
-    }).catch (error=> {
-        console.error(error);
-    });
-    onAdminTrigger();
-  };
+  async function onAdd() {
+    try {
+      const response = await fetch(`${apiUrl}/spots`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({"label": techName, "quadrant": quadrants, "ring": rings})
+      });
+      if (response.ok) {
+        // The request was successful
+        console.log('Insertion completed successfully.');
+        onAdminTrigger();
+      } else {
+        // The request was not successful
+        console.error('Error occurred while inserting data.');
+      }
+    } catch (error) {
+      // An error occurred during the request
+      console.error('Error occurred during the request:', error);
+    }
+  }
+  
 
   function onCancel() {
     // Reset the form

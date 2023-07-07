@@ -520,6 +520,24 @@ export default function Radar (props) {
           isMouseDown = true;
           const [mouseX, mouseY] = d3.pointer(event);
 
+          // const element = d3.select("svg");
+          // console.log("element");
+          // console.log(element);
+          
+          // const svgRect = element.getBoundingClientRect();
+          // const [mouseXnew, mouseYnew] = [svgRect.left,svgRect.top];
+
+          
+          console.log("mouseX");
+          console.log(mouseX);
+          console.log("mouseY");
+          console.log(mouseY);
+          // console.log("mouseXnew");
+          // console.log(mouseXnew);
+          // console.log("mouseYnew");
+          // console.log(mouseYnew);
+
+
           startX = currentX = mouseX;
           startY = currentY = mouseY;
 
@@ -564,8 +582,18 @@ export default function Radar (props) {
             .filter(function() {
               const rect = this.getBoundingClientRect()
               //the coordinates of the blips are a bit shifted, this -30 +10 are to adjusted it back.
-              const elementX = rect.x; 
-              const elementY = rect.y;     
+              const elementX = rect.right; 
+              const elementY = rect.bottom;     
+
+              console.log("startX");
+              console.log(startX);
+              console.log("currentX");
+              console.log(currentX);
+              console.log("startY");
+              console.log(startY);
+              console.log("currentY");
+              console.log(currentY);
+
               return (
                 elementX >= Math.min(startX, currentX) &&
                 elementX <= Math.max(startX, currentX) &&

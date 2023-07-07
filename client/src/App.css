@@ -1,12 +1,15 @@
 .App {
   text-align: center;
+  align-items: left;
   display: flex;
   flex-direction: row;
 }
 
-/* .Radar{
+.Radar{
+  align-items: left;
+  width: 1450px;
   
-} */
+}
 
 .Panel{
   margin-top: 80px;

@@ -22,7 +22,7 @@ function AdminSelectionPanelSearch({entries,onSelectSpot}) {
     setSelectedId(value);
   }
 
-  function handleSelect(){
+  async function handleSelect(){
     console.log("selectedId");
     console.log(selectedId);
     const updateSelected = selectedId.map((id) => {

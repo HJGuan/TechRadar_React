@@ -4,31 +4,21 @@ const bodyParser = require('body-parser');
 const techs = require('./Data/techs');
 const app = express();
 
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
-mongoose.connect(process.env.MONGODB_URI, {
+// if (process.env.NODE_ENV !== "production") {}
+const MONGO_URI="mongodb+srv://admin:hongjieguan@cluster-hongjie.exofdeh.mongodb.net/techsCollection"
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
 const cors = require('cors');
-
-
 // Enable CORS
 app.use(cors());
-// app.use(cors({
-//   origin: 'http://localhost:3000',
-//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//   allowedHeaders: ['Content-Type', 'Authorization']
-// }));
 
 // Enable bodyParser
 app.use(bodyParser.json());
+// app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 
 const techsSchema = {
@@ -62,7 +52,7 @@ function insertData() {
 
 insertData();
 
-app.get('/techradar/v1/spots', (req, res) => {
+app.get('/techradar/v1/spots', async (req, res) => {
   Techs.find({}).exec()
     .then(spots => {
       res.json(spots);
@@ -73,21 +63,21 @@ app.get('/techradar/v1/spots', (req, res) => {
     });
 });
 
-app.post('/techradar/v1/spots', (req, res) => {
-
+app.post('/techradar/v1/spots', async (req, res) => {
   const { label, quadrant, ring } = req.body;
 
-  const tech = new Techs({
-    quadrant: quadrant,
-    ring: ring,
-    label: label,
-    active: true
-  });
-  tech.save();
-  console.log("saved "+ label);
+    const tech = new Techs({
+      quadrant: quadrant,
+      ring: ring,
+      label: label,
+      active: true
+    });
+    await tech.save();
+    console.log("saved "+ label);
+    res.sendStatus(200);
 });
 
-app.post('/techradar/v1', (req, res) => {
+app.post('/techradar/v1', async (req, res) => {
   Techs.deleteMany({})
     .then(() => {
       console.log('All data deleted successfully');
@@ -103,7 +93,7 @@ app.post('/techradar/v1', (req, res) => {
     });
 });
 
-app.put('/techradar/v1/spots/:techId', (req, res) => {
+app.put('/techradar/v1/spots/:techId', async(req, res) => {
   const techId = req.params.techId;
   const { label, quadrant, ring } = req.body;
   Techs.findByIdAndUpdate(techId, { label, quadrant, ring }, { new: true })
@@ -133,7 +123,7 @@ app.delete('/techradar/v1/spots/:techId', (req, res) => {
   });
 });
 
-app.delete('/techradar/v1/spots', (req, res) => {
+app.delete('/techradar/v1/spots', async(req, res) => {
   const isBodyEmpty = Object.keys(req.body).length === 0;
   if (isBodyEmpty){
     //if request body is not provided, delete all 

@@ -9,6 +9,7 @@ function AdminSelectionPanel_Muptiple({spots,onSelectSpot,onAdminTrigger}) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [data, setData] = useState([]);
 
+
   const columns = [
     {
       title: 'Name',
@@ -36,7 +37,8 @@ function AdminSelectionPanel_Muptiple({spots,onSelectSpot,onAdminTrigger}) {
         },
       ],
       onFilter: (value, record) => record.quadrant.indexOf(value) === 0,
-      sorter: (a, b) => a.quadrant - b.quadrant,
+      // sorter: (a, b) =>length(a) - length(b),
+      // sortDirections: ['descend'],
     },
     {
       title: 'Ring',
@@ -59,8 +61,9 @@ function AdminSelectionPanel_Muptiple({spots,onSelectSpot,onAdminTrigger}) {
           value: 'HOLD',
         },
       ],
-      onFilter: (value, record) => record.ring.indexOf(value) === 0,
-      sorter: (a, b) => a.ring - b.ring,
+      onFilter: (value, title) => title.ring.indexOf(value) === 0,
+      // sorter: (a, b) => a.ring - b.ring,
+      // sortDirections: ['descend'],
     },
   ];
 
